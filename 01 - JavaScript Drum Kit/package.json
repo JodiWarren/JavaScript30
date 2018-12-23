@@ -1,0 +1,17 @@
+{
+  "name": "jdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run typescript & npm run server",
+    "typescript": "tsc script.ts --watch   ",
+    "server": "browser-sync -f script.js "
+  },
+  "author": "Jodi Warren <jodi@jodiwarren.com> (https://jodiwarren.com)",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^3.2.2"
+  }
+}
