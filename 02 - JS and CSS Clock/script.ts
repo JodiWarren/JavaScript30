@@ -2,10 +2,7 @@ const hourHand = document.querySelector('.hour-hand');
 const minuteHand = document.querySelector('.min-hand');
 const secondHand = document.querySelector('.second-hand');
 
-function getHandPosition(currentTime, totalTime) {
-    const percentage = currentTime / totalTime;
-    return (360 * percentage) + 90;
-}
+const getHandPosition = (currentTime, totalTime) => 360 * currentTime / totalTime;
 
 function tick() {
     const time = new Date;

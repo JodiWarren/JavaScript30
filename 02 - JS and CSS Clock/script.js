@@ -1,10 +1,7 @@
 var hourHand = document.querySelector('.hour-hand');
 var minuteHand = document.querySelector('.min-hand');
 var secondHand = document.querySelector('.second-hand');
-function getHandPosition(currentTime, totalTime) {
-    var percentage = currentTime / totalTime;
-    return (360 * percentage) + 90;
-}
+var getHandPosition = function (currentTime, totalTime) { return 360 * currentTime / totalTime; };
 function tick() {
     var time = new Date;
     var hour = time.getHours() > 11 ? time.getHours() - 12 : time.getHours();
