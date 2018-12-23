@@ -17,6 +17,13 @@ function playAudio(audio) {
     var thisAudio = new Audio(audioSrc);
     thisAudio.play();
 }
+function removeTransition(event) {
+    if (event.propertyName !== 'transform' ||
+        !event.target) {
+        return;
+    }
+    event.target.classList.remove('playing');
+}
 function handleKeyEvent(event) {
     if (!keyMap[event.keyCode]) {
         return;
@@ -24,8 +31,6 @@ function handleKeyEvent(event) {
     var _a = keyMap[event.keyCode], button = _a.button, audio = _a.audio;
     playAudio(audio);
     button.classList.add('playing');
-    window.setTimeout(function () {
-        button.classList.remove('playing');
-    }, 70);
+    button.addEventListener('transitionend', removeTransition);
 }
 window.addEventListener('keydown', handleKeyEvent);

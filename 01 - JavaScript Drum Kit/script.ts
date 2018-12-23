@@ -30,6 +30,16 @@ function playAudio(audio: HTMLAudioElement) {
     thisAudio.play();
 }
 
+function removeTransition(event: Event): void {
+    if (
+        (<TransitionEvent>event).propertyName !== 'transform' ||
+        !event.target
+    ) {
+        return;
+    }
+    (<HTMLDivElement>event.target).classList.remove('playing');
+}
+
 function handleKeyEvent(event: KeyboardEvent): void {
     if (!keyMap[event.keyCode]) {
         return;
@@ -40,9 +50,7 @@ function handleKeyEvent(event: KeyboardEvent): void {
     playAudio(audio);
 
     button.classList.add('playing');
-    window.setTimeout(() => {
-        button.classList.remove('playing');
-    }, 70);
+    button.addEventListener('transitionend', removeTransition)
 }
 
-window.addEventListener('keydown',handleKeyEvent)
+window.addEventListener('keydown', handleKeyEvent)
