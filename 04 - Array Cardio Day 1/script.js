@@ -75,7 +75,13 @@ console.table(inventorsSortedByYearsLived);
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 var $ = function (selector) { return [].slice.call(document.querySelectorAll(selector)); };
-var containsText = function (text) { return function (element) { return element.innerText.indexOf(text) > -1; }; };
+/**
+ * Construct text search
+ * @param text
+ */
+var containsText = function (text) {
+    return function (element) { return element.innerText.indexOf(text) > -1; };
+};
 var containsDe = containsText('de');
 var boulevardsWithDe = $('.mw-category-group a').filter(containsDe);
 console.log(boulevardsWithDe);

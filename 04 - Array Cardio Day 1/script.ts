@@ -88,7 +88,12 @@ console.table(inventorsSortedByYearsLived);
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 const $ = (selector) => [].slice.call(document.querySelectorAll(selector));
-const containsText = (text: string) => (element: HTMLElement) => element.innerText.indexOf(text) > -1;
+/**
+ * Construct text search
+ * @param text
+ */
+const containsText = (text: string) => // Curries text to find
+    (element: HTMLElement) => element.innerText.indexOf(text) > -1;
 const containsDe = containsText('de');
 const boulevardsWithDe = $('.mw-category-group a').filter(containsDe);
 console.log(boulevardsWithDe);
