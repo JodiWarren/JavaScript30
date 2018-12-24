@@ -33,6 +33,10 @@
       font-family: 'helvetica neue', sans-serif;
       font-weight: 100;
       font-size: 50px;
+      --spacing: 10px;
+      --blur: 10px;
+      --base-color: #ffc600;
+
     }
 
     .controls {
@@ -41,6 +45,18 @@
 
     input {
       width: 100px;
+    }
+
+    img {
+      box-shadow: var(--spacing) var(--spacing) 10px 10px var(--base-color);
+      filter: blur(var(--blur));
+      will-change: filter;
+      z-index: 1;
+      transform: translate3d(0,0,0);
+    }
+
+    .hl {
+      color: var(--base-color);
     }
   </style>
 
