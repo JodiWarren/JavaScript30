@@ -1,37 +1,18 @@
-const $ = (selector) => document.querySelector(selector);
+const body = document.documentElement;
+const inputs = document.querySelectorAll('.controls input');
 
-const body = $('body');
-const spacingInput = $('#spacing');
-const blurInput = $('#blur');
-const baseInput = $('#base');
+function listenToInput(input) {
+    input.addEventListener('input', setInputListener)
+}
 
-const appendpx = (value) => `${value}px`;
-const string = (value) => `${value}`;
+function setInputListener() {
+    if (!(this instanceof HTMLInputElement)) {
+        return;
+    }
+    body.style.setProperty(
+        `--${this.name}`,
+        this.value + (this.getAttribute('data-sizing') || '')
+    );
+}
 
-function setListener(
-    element: HTMLInputElement,
-    propertyName: string,
-    valueCallback: (value: number | string) => string
-) {
-    element.addEventListener('input', () => {
-        body.style.setProperty(propertyName, valueCallback(element.value));
-    })
-};
-
-setListener(
-    spacingInput,
-    '--spacing',
-    appendpx
-);
-
-setListener(
-    blurInput,
-    '--blur',
-    appendpx
-);
-
-setListener(
-    baseInput,
-    '--base-color',
-    string
-);
+inputs.forEach(listenToInput);
